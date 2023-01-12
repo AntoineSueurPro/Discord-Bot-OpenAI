@@ -14,7 +14,6 @@ const {
   entersState,
 } = require("@discordjs/voice");
 const axios = require("axios");
-const { token } = require("./env.js");
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
