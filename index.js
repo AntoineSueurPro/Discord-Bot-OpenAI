@@ -105,7 +105,7 @@ client.on("messageCreate", (message) => {
               console.log("voice");
               const resource = createAudioResource(
                 "http://api.voicerss.org/?key=" +
-                  token.tokenVoice +
+                  process.env.TOKENVOICE +
                   "&c=AAC&hl=fr-fr&f=48khz_16bit_stereo&v=Axel&src=" +
                   data[0].choices[0].text,
                 {
@@ -129,7 +129,7 @@ client.on("messageCreate", (message) => {
             } else {
               const resource = createAudioResource(
                 "http://api.voicerss.org/?key=" +
-                  token.tokenVoice +
+                  process.env.TOKENVOICE +
                   "&c=AAC&hl=fr-fr&f=48khz_16bit_stereo&v=Axel&src=Il semblerait que je sois cassé ou que le quota a été dépassé. Désolé",
                 {
                   inlineVolume: true,
@@ -146,7 +146,7 @@ client.on("messageCreate", (message) => {
   }
 });
 
-client.login(token.tokenBot);
+client.login(process.env.TOKENBOT);
 
 function generateLoadingText() {
   let loadingMessages = [
@@ -166,7 +166,7 @@ async function req(url, body) {
   return axios
     .post(url, body, {
       headers: {
-        authorization: "Bearer " + token.tokenAPI,
+        authorization: "Bearer " + process.env.TOKENAPI,
         Accept: "application/json",
         "content-type": "application/json",
       },
