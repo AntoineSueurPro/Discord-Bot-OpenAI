@@ -27,6 +27,7 @@ const client = new Client({
 let context = 'Tu dois répondre aux questions et te montrer créatif\n'
 let conversation = context;
 let counter = 0
+let nbMess = 3
 
 let channelId = null
 let isVoice = false
@@ -103,8 +104,6 @@ client.on('messageCreate', message => {
           max_tokens: 500,
           stop: [" Humain:", " Bob:", "'Bob: '"],
           top_p: 1,
-          // frequency_penalty: 0,
-          // presence_penalty: 0.6
         }
         url = "https://api.openai.com/v1/completions"
         Promise.all([req(url, JSON.stringify(body))]).then((data) => {
@@ -127,7 +126,7 @@ client.on('messageCreate', message => {
             connection.subscribe(player)
             player.play(resource)
           }
-          if (counter >= 3) {
+          if (counter >= nbMess) {
             conversation = context + '\nBob:' + text
             counter = 0
           } else {
